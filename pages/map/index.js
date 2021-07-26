@@ -1,5 +1,7 @@
+import MainLayout from '../../components/MainLayout';
+
 const Map = () => {
-  return <div>This is map page!</div>
+  return <MainLayout title={"Map"}>This is map page!</MainLayout>
 }
 
 export default Map;

@@ -1,5 +1,7 @@
+import MainLayout from '../../components/MainLayout';
+
 const Rules = () => {
-  return <div>This is rules page!</div>
+  return <MainLayout title={"Rules"}>This is rules page!</MainLayout>
 }
 
 export default Rules;

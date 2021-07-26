@@ -1,9 +1,10 @@
 import {useRouter} from 'next/router';
+import MainLayout from '../../components/MainLayout';
 
 const Hotel = () => {
   const router = useRouter();
 
-  return <div>This is hotel page with id {router.query.id}</div>
+  return <MainLayout>This is hotel page with id {router.query.id}</MainLayout>
 }
 
 export default  Hotel;

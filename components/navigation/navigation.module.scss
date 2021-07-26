@@ -1,0 +1,23 @@
+.navigation {
+  display: flex;
+  align-items: center;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  padding: 15px;
+
+  &Link{
+    margin-right: 20px;
+    color: #111;
+    text-transform: capitalize;
+
+    &:hover {
+      color: lighten(#111, 10%);
+    }
+
+    &:last-child {
+      margin-right: 0;
+    }
+  }
+}
