@@ -7,7 +7,7 @@ const Navigation = () => {
     <nav className={navStyles.navigation}>
       {
         navigationParams.map(({title, url }) => {
-          return <Link href={url}><a className={navStyles.navigationLink}>{title}</a></Link>
+          return <Link href={url} key={title}><a className={navStyles.navigationLink}>{title}</a></Link>
         })
       }
     </nav>
