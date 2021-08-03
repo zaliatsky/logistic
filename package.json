@@ -4,8 +4,9 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "dev": "next",
-    "server": "nodemon app.js"
+    "next": "next",
+    "server": "nodemon app.js",
+    "dev": "concurrently \"yarn run server\" \"yarn run next\""
   },
   "repository": {
     "type": "git",
