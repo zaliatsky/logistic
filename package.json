@@ -22,6 +22,9 @@
     "bcrypt": "^5.0.1",
     "bcryptjs": "^2.4.3",
     "config": "^3.3.6",
+    "eslint-plugin-jsx-a11y": "^6.4.1",
+    "eslint-plugin-prettier": "^3.4.0",
+    "eslint-plugin-react-hooks": "^4.2.0",
     "express": "^4.17.1",
     "express-validator": "^6.12.1",
     "jsonwebtoken": "^8.5.1",
@@ -48,7 +51,10 @@
   },
   "husky": {
     "hooks": {
-      "pre-commit": "yarn lint"
-    }
+      "applypatch-msg": "echo \"[Husky] applypatch-msg\"",
+    "pre-applypatch": "echo \"[Husky] pre-applypatch\"",
+    "post-applypatch": "echo \"[Husky] post-applypatch\"",
+    "pre-commit": "echo \"[Husky] pre-commit\""
+  }
   }
 }
