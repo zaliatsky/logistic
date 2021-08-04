@@ -3,7 +3,7 @@ module.exports = {
   'front-end/**/*.(ts|tsx)': () => 'yarn tsc --noEmit',
 
   // Lint then format TypeScript and JavaScript files
-  'front-end/**/*.(ts|tsx|js)': (filenames) => [
+  '**/*.(ts|tsx|js)': (filenames) => [
     `yarn eslint --fix ${filenames.join(' ')}`,
     `yarn prettier --write ${filenames.join(' ')}`,
   ],
