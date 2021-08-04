@@ -14,5 +14,5 @@ export default [
   {
     title: 'history',
     url: '/history',
-  }
+  },
 ]

@@ -1,7 +1,7 @@
-import Head from 'next/head';
-import Navigation from "./navigation/Navigation";
-
-const MainLayout = ({children, title=""}) => {
+import Head from 'next/head'
+import Navigation from './navigation/Navigation'
+const blabla = ''
+const MainLayout = ({ children, title = '' }) => {
   return (
     <>
       <Head>
@@ -13,4 +13,4 @@ const MainLayout = ({children, title=""}) => {
   )
 }
 
-export default MainLayout;
+export default MainLayout
