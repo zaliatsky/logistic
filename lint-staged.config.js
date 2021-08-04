@@ -1,6 +1,6 @@
 module.exports = {
   // Type check TypeScript files
-  'front-end/**/*.(ts|tsx)': () => 'yarn tsc --noEmit',
+  '**/*.(ts|tsx)': () => 'yarn tsc --noEmit',
 
   // Lint then format TypeScript and JavaScript files
   '**/*.(ts|tsx|js)': (filenames) => [
@@ -9,6 +9,6 @@ module.exports = {
   ],
 
   // Format MarkDown and JSON
-  'front-end/**/*.(md|json)': (filenames) =>
+  '**/*.(md|json)': (filenames) =>
     `yarn prettier --write ${filenames.join(' ')}`,
 }
