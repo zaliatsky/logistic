@@ -6,8 +6,8 @@
   "scripts": {
     "next": "next",
     "server": "nodemon app.js",
-    "dev": "concurrently \"yarn run server\" \"yarn run next\" \"yarn run lint\"",
-    "lint": "eslint ./front-end --ext js,jsx,ts,tsx",
+    "dev": "concurrently \"yarn run server\" \"yarn run next\"",
+    "lint": "lint-staged",
     "format": "prettier --write ."
   },
   "repository": {
@@ -42,6 +42,7 @@
     "eslint-plugin-react": "^7.24.0",
     "husky": "^7.0.1",
     "install": "^0.13.0",
+    "lint-staged": "^11.1.1",
     "nodemon": "^2.0.12",
     "prettier": "^2.3.2",
     "sass": "^1.36.0",
