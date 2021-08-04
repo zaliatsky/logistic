@@ -1,4 +1,4 @@
-import MainLayout from '../../front-end/components/MainLayout';
+import MainLayout from '../../front-end/components/MainLayout'
 
 const Hotels = () => {
   return (
@@ -6,4 +6,4 @@ const Hotels = () => {
   )
 }
 
-export default Hotels;
+export default Hotels

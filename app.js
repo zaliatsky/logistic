@@ -1,3 +1,4 @@
+//node js config file
 const express = require('express');
 const config = require('config');
 const mongoose = require('mongoose');
