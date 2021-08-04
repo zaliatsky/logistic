@@ -1,7 +1,5 @@
 const MainPage = () => {
-    return (<div>
-        This is main page!
-    </div>)
+  return <div>This is main page!</div>
 }
 
-export default MainPage;
+export default MainPage

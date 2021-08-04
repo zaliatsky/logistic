@@ -1,4 +1,4 @@
-import {useRouter} from 'next/router'
+import { useRouter } from 'next/router'
 import MainLayout from '../../front-end/components/MainLayout'
 
 const Hotel = () => {
