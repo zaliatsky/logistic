@@ -6,10 +6,9 @@
   "scripts": {
     "next": "next",
     "server": "nodemon app.js",
-    "dev": "concurrently \"yarn run server\" \"yarn run next\"",
-    "lint": "prettier --check .",
-    "format": "prettier --write .",
-    "frontend-lint": "cd front-end && yarn lint"
+    "dev": "concurrently \"yarn run server\" \"yarn run next\" \"yarn run lint\"",
+    "lint": "eslint ./front-end --ext js,jsx,ts,tsx",
+    "format": "prettier --write ."
   },
   "repository": {
     "type": "git",
@@ -48,13 +47,5 @@
     "sass": "^1.36.0",
     "typescript": "^4.3.5",
     "yarn": "^1.22.11"
-  },
-  "husky": {
-    "hooks": {
-      "applypatch-msg": "echo \"[Husky] applypatch-msg\"",
-    "pre-applypatch": "echo \"[Husky] pre-applypatch\"",
-    "post-applypatch": "echo \"[Husky] post-applypatch\"",
-    "pre-commit": "echo \"[Husky] pre-commit\""
-  }
   }
 }
