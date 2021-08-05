@@ -1,7 +1,5 @@
 @mixin respond-to($name) {
-  //If the key exist in the map
   @if map-has-key($breakpoints, $name) {
-    //Print a media query based on the value
     @media #{inspect(map-get($breakpoints, $name))} {
       @content;
     }
@@ -10,24 +8,4 @@
 
 @mixin transition($time, $type) {
   transition: #{$time}s $type;
-}
-
-@mixin scrollbars($size, $foreground-color, $background-color) {
-  scrollbar-face-color: $foreground-color;
-  scrollbar-track-color: $background-color;
-
-  // For Google Chrome
-  &::-webkit-scrollbar {
-    width: $size;
-    height: $size;
-  }
-
-  &::-webkit-scrollbar-thumb {
-    background: $foreground-color;
-    border-radius: 2px;
-  }
-
-  &::-webkit-scrollbar-track {
-    background: $background-color;
-  }
 }

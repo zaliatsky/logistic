@@ -8,6 +8,19 @@ body {
   color: $black;
 }
 
+button {
+  outline: 0;
+  border: 0;
+  background: none;
+  box-shadow: none;
+
+  &:hover,
+  &:focus,
+  &:focus {
+    outline: 0;
+  }
+}
+
 a {
   @include transition(.3, ease);
   text-decoration: none;

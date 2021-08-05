@@ -1,9 +1,13 @@
 @import 'helpers/variables';
 @import 'helpers/mixins';
 
+$signin-left: #21d4fd;
+$signin-right: #b721ff;
+$signup-left: #74ebd5;
+$signup-right: #9face6;
+
 .auth {
   &__wrapper {
-    @include scrollbars(4px, #cc0000, $white);
     display: flex;
     width: 100vw;
     height: 100vh;
@@ -30,13 +34,75 @@
       margin-bottom: 20px;
     }
 
+    &Field {
+      margin-bottom: 20px;
+    }
+
+    &Label {
+      margin-bottom: 10px;
+    }
+
     &Btn {
-      padding: 20px 40px;
-      border: 1px solid ;
+      color: $white;
+      padding: 15px 60px;
+      text-transform: uppercase;
+      font-size: 16px;
+      font-weight: 300;
 
-      &--sign {
+      &Wrapper {
+        position: relative;
+        z-index: 1;
+        border-radius: 25px;
+        overflow: hidden;
+        margin-right: 10px;
+        cursor: pointer;
 
+        &.signin {
+          .auth__formBtnBg {
+            background: linear-gradient(to left, $signin-left, $signin-right, $signin-left, $signin-right);
+          }
+        }
+
+        &.register {
+          .auth__formBtnBg {
+            background: linear-gradient(to left, $signup-left, $signup-right, $signup-left, $signup-right);
+          }
+        }
+
+        &:hover {
+          .auth__formBtnBg {
+            left: 0;
+          }
+        }
       }
+
+      &Bg {
+        @include transition(.3, ease-in);
+        position: absolute;
+        z-index: -1;
+        width: 300%;
+        height: 100%;
+        top: 0;
+        left: -100%;
+      }
+
+      &Icon {
+        margin-left: 10px;
+      }
+    }
+
+    &Btns {
+      display: flex;
+      flex-direction: row;
+
+      &Wrapper {
+        display: flex;
+        align-items: center;
+      }
+    }
+
+    &Register {
+      flex-direction: row-reverse;
     }
   }
 }
