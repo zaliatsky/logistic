@@ -1,25 +1,13 @@
-import * as Yup from 'yup'
 import { Form, Formik } from 'formik'
 import FormField from './Field'
 import styles from '../../styles/auth.module.scss'
 import Button from './Button'
 
-const RegisterForm = ({ initialValues, onClick }) => {
+const RegisterForm = ({ initialValues, validationSchema, onClick }) => {
   return (
     <Formik
       initialValues={initialValues}
-      validationSchema={Yup.object().shape({
-        username: Yup.string().required('Username is required'),
-        email: Yup.string()
-          .email('Email is invalid')
-          .required('Email is required'),
-        password: Yup.string()
-          .min(4, 'Password must be at least 4 characters')
-          .required('Password is required'),
-        confirmPassword: Yup.string()
-          .oneOf([Yup.ref('password'), null], 'Passwords must match')
-          .required('Confirm Password is required'),
-      })}
+      validationSchema={validationSchema}
       onSubmit={(fields) => {
         alert('SUCCESS!! :-)\n\n' + JSON.stringify(fields, null, 4))
       }}
@@ -87,7 +75,7 @@ const RegisterForm = ({ initialValues, onClick }) => {
                 onClick={onClick}
               />
             </div>
-            <button type="reset">Reset</button>
+            <button type="reset">Reset Fields</button>
           </div>
         </Form>
       )}

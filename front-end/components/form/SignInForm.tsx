@@ -1,19 +1,13 @@
-import * as Yup from 'yup'
 import { Form, Formik } from 'formik'
 import FormField from './Field'
 import styles from '../../styles/auth.module.scss'
 import Button from './Button'
 
-const SignInForm = ({ initialValues, onClick }) => {
+const SignInForm = ({ initialValues, validationSchema, onClick }) => {
   return (
     <Formik
       initialValues={initialValues}
-      validationSchema={Yup.object().shape({
-        username: Yup.string().required('Username is required'),
-        password: Yup.string()
-          .min(4, 'Password must be at least 4 characters')
-          .required('Password is required'),
-      })}
+      validationSchema={validationSchema}
       onSubmit={(fields) => {
         alert('SUCCESS!! :-)\n\n' + JSON.stringify(fields, null, 4))
       }}
@@ -59,7 +53,7 @@ const SignInForm = ({ initialValues, onClick }) => {
                 onClick={onClick}
               />
             </div>
-            <button type="reset">Reset</button>
+            <button type="reset">Reset Fields</button>
           </div>
         </Form>
       )}

@@ -3,8 +3,7 @@ import Auth from './auth'
 
 const MainPage = () => {
   const router = useRouter()
-  console.log('use router', router)
-
+  console.log('router', router)
   return (
     <>
       <Auth />

@@ -5,16 +5,15 @@ import RegisterForm from '../../front-end/components/form/RegisterForm'
 import {
   initialValuesSignin,
   initialValuesRegister,
+  validationSchemaSignin,
+  validationSchemaRegister,
 } from '../../front-end/variables/form'
-console.log(initialValuesSignin)
 
 const Auth = () => {
-  const [isRegister, setFormType] = useState(false)
-  console.log('is sign up', isRegister)
+  const [isRegister, changeFormType] = useState(false)
 
-  const changeForm = (event) => {
-    setFormType(!isRegister)
-    console.log('here is event', event)
+  const changeForm = () => {
+    changeFormType(!isRegister)
   }
 
   return (
@@ -27,11 +26,13 @@ const Auth = () => {
         {isRegister ? (
           <RegisterForm
             initialValues={initialValuesRegister}
+            validationSchema={validationSchemaRegister}
             onClick={changeForm}
           />
         ) : (
           <SignInForm
             initialValues={initialValuesSignin}
+            validationSchema={validationSchemaSignin}
             onClick={changeForm}
           />
         )}
