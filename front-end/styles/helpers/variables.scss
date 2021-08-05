@@ -1,0 +1,10 @@
+$black: #000;
+$white: #fff;
+$dark-nav: #52565e;
+
+// Media queries
+$breakpoints: (
+  'small': (min-width: 768px),
+  'medium': (min-width: 1024px),
+  'large': (min-width: 1200px),
+);
