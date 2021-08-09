@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import styles from '../../front-end/styles/auth.module.scss'
+import styles from '../../front-end/styles/helpers/auth.module.scss'
 import SignInForm from '../../front-end/components/form/SignInForm'
 import RegisterForm from '../../front-end/components/form/RegisterForm'
 import {
@@ -10,7 +10,7 @@ import {
 } from '../../front-end/variables/form'
 
 const Auth = () => {
-  const [isRegister, changeFormType] = useState(false)
+  const [isRegister, changeFormType] = useState(true)
 
   const changeForm = () => {
     changeFormType(!isRegister)

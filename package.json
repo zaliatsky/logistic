@@ -1,7 +1,7 @@
 {
   "name": "hotel-network",
   "version": "1.0.0",
-  "description": "",
+  "description": "Hotel network application",
   "main": "index.js",
   "scripts": {
     "next": "next",
@@ -13,8 +13,9 @@
     "type": "git",
     "url": ""
   },
+  "proxy": "http://localhost:7000",
   "keywords": [],
-  "author": "",
+  "author": "illia zaliatskyi",
   "license": "ISC",
   "dependencies": {
     "bcrypt": "^5.0.1",

@@ -1,16 +1,47 @@
 import { Form, Formik } from 'formik'
 import FormField from './Field'
-import styles from '../../styles/auth.module.scss'
+import styles from '../../styles/helpers/auth.module.scss'
 import Button from './Button'
+import { useHttp } from '../../hooks/http.hook'
 
 const RegisterForm = ({ initialValues, validationSchema, onClick }) => {
+  const { loading, request } = useHttp()
+
+  const registerHandler = async ({ username, password }) => {
+    console.log('submit click')
+
+    try {
+      const data = await request(
+        '/api/auth/register',
+        'POST',
+        { username, password },
+        {}
+      ).then((data2) => console.log('here is response data', data2))
+      console.log('data is', data)
+    } catch (e) {
+      console.log(e)
+    }
+  }
   return (
     <Formik
       initialValues={initialValues}
       validationSchema={validationSchema}
-      onSubmit={(fields) => {
-        alert('SUCCESS!! :-)\n\n' + JSON.stringify(fields, null, 4))
-      }}
+      onSubmit={(fields) => registerHandler(fields)}
+      // onSubmit={async (values, { setSubmitting }) => {
+      //   const res = await fetch(`/api/auth/register`, {
+      //     method: 'POST',
+      //   }).then(response => {
+      //     console.log('response', response)
+      //     response.json();
+      //   });
+      //   console.log(res);
+      //   //props = res;
+      //   //return props;
+      //   setTimeout(() => {
+      //     alert(JSON.stringify(res, null, 2));
+      //     setSubmitting(false);
+      //   }, 400);
+      // }}
       render={({ errors, touched }) => (
         <Form>
           <FormField
@@ -20,15 +51,6 @@ const RegisterForm = ({ initialValues, validationSchema, onClick }) => {
             className={
               'form-control' +
               (errors.username && touched.username ? ' is-invalid' : '')
-            }
-          />
-          <FormField
-            name={'email'}
-            inputType={'email'}
-            labelName={'Email'}
-            className={
-              'form-control' +
-              (errors.email && touched.email ? ' is-invalid' : '')
             }
           />
           <FormField
@@ -60,6 +82,7 @@ const RegisterForm = ({ initialValues, validationSchema, onClick }) => {
                 btnType={'submit'}
                 hasArrow={false}
                 onClick={null}
+                disabled={loading}
               />
 
               <Button
@@ -69,6 +92,7 @@ const RegisterForm = ({ initialValues, validationSchema, onClick }) => {
                 btnType={'button'}
                 hasArrow={true}
                 onClick={onClick}
+                disabled={null}
               />
             </div>
             <button type="reset">Reset Fields</button>

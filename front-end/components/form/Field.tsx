@@ -1,4 +1,4 @@
-import styles from '../../styles/auth.module.scss'
+import styles from '../../styles/helpers/auth.module.scss'
 import { ErrorMessage, Field } from 'formik'
 
 const FormField = ({ name, inputType, className, labelName }) => {

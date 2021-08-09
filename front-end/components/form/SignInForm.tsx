@@ -1,6 +1,6 @@
 import { Form, Formik } from 'formik'
 import FormField from './Field'
-import styles from '../../styles/auth.module.scss'
+import styles from '../../styles/helpers/auth.module.scss'
 import Button from './Button'
 
 const SignInForm = ({ initialValues, validationSchema, onClick }) => {
@@ -40,6 +40,7 @@ const SignInForm = ({ initialValues, validationSchema, onClick }) => {
                 btnType={'submit'}
                 hasArrow={false}
                 onClick={null}
+                disabled={null}
               />
 
               <Button
@@ -49,6 +50,7 @@ const SignInForm = ({ initialValues, validationSchema, onClick }) => {
                 btnType={'button'}
                 hasArrow={true}
                 onClick={onClick}
+                disabled={null}
               />
             </div>
             <button type="reset">Reset Fields</button>

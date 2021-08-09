@@ -1,4 +1,4 @@
-import styles from '../../styles/auth.module.scss'
+import styles from '../../styles/helpers/auth.module.scss'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faArrowRight } from '@fortawesome/free-solid-svg-icons'
 
@@ -9,11 +9,12 @@ const Button = ({
   hasArrow,
   text,
   onClick,
+  disabled,
 }) => {
   return (
     <div className={wrapperClass} onClick={onClick}>
       <div className={styles.auth__formBtnBg} />
-      <button type={btnType} className={btnClass}>
+      <button type={btnType} className={btnClass} {...disabled}>
         {text}
         {hasArrow && (
           <FontAwesomeIcon

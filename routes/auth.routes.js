@@ -3,19 +3,20 @@ const { check, validatioResult } = require('express-validator')
 const config = require('config')
 const bcrypt = require('bcryptjs')
 const jwt = require('jsonwebtoken')
-const User = require('../models/user')
+const User = require('../models/User')
 const router = Router()
 
 // /api/auth/register
 router.post(
   '/register',
   [
-    check('email', 'email is incorrect').isEmail(),
-    check('password', 'minimal length is 6 letters').isLength({
-      min: 6,
+    check('username', 'username is incorrect').exists(),
+    check('password', 'minimal length is 4 letters').isLength({
+      min: 4,
     }),
   ],
   async (req, res) => {
+    console.log('here is request', req.body)
     try {
       const errors = validatioResult(req)
 
@@ -25,15 +26,15 @@ router.post(
           message: 'incorrect registration data',
         })
 
-      const { email, password } = req.body
+      const { username, password } = req.body
 
-      const candidate = await User.findOne({ email })
+      const candidate = await User.findOne({ username })
 
       if (candidate)
         return res.status(400).json({ message: 'There is such user' })
 
       const hashedPassword = await bcrypt.hash(password, 12)
-      const user = new User({ email, password: hashedPassword })
+      const user = new User({ username, password: hashedPassword })
 
       await user.save()
       res.status(201).json({ message: 'User has been created!' })
@@ -47,9 +48,9 @@ router.post(
 router.post(
   '/login',
   [
-    check('email', 'email is incorrect').normalizeEmail().isEmail(),
+    check('username', 'username is incorrect').exists(),
     check('password', 'minimal length is 6 letters').exists().isLength({
-      min: 6,
+      min: 4,
     }),
   ],
   async (req, res) => {
@@ -62,8 +63,8 @@ router.post(
           message: 'incorrect login data',
         })
 
-      const { email, password } = req.body
-      const user = await User.findOne({ email })
+      const { username, password } = req.body
+      const user = await User.findOne({ username })
 
       if (!user) return res.status(400).json({ message: 'User not find' })
 
