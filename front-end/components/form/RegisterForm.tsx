@@ -14,7 +14,6 @@ const RegisterForm = ({ initialValues, validationSchema, onClick }) => {
       render={({ errors, touched }) => (
         <Form>
           <FormField
-            id={'username'}
             name={'username'}
             inputType={'text'}
             labelName={'Username'}
@@ -24,7 +23,6 @@ const RegisterForm = ({ initialValues, validationSchema, onClick }) => {
             }
           />
           <FormField
-            id={'email'}
             name={'email'}
             inputType={'email'}
             labelName={'Email'}
@@ -34,7 +32,6 @@ const RegisterForm = ({ initialValues, validationSchema, onClick }) => {
             }
           />
           <FormField
-            id={'password'}
             name={'password'}
             inputType={'password'}
             labelName={'Password'}
@@ -44,7 +41,6 @@ const RegisterForm = ({ initialValues, validationSchema, onClick }) => {
             }
           />
           <FormField
-            id={'confirmPassword'}
             name={'confirmPassword'}
             inputType={'password'}
             labelName={'Confirm Password'}

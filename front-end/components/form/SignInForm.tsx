@@ -14,7 +14,6 @@ const SignInForm = ({ initialValues, validationSchema, onClick }) => {
       render={({ errors, touched }) => (
         <Form>
           <FormField
-            id={'username'}
             name={'username'}
             inputType={'text'}
             labelName={'Username'}
@@ -24,7 +23,6 @@ const SignInForm = ({ initialValues, validationSchema, onClick }) => {
             }
           />
           <FormField
-            id={'password'}
             name={'password'}
             inputType={'password'}
             labelName={'Password'}
