@@ -8,14 +8,17 @@ const RegisterForm = ({ initialValues, validationSchema, onClick }) => {
   const { loading, request } = useHttp()
 
   const registerHandler = async ({ username, password }) => {
-    console.log('submit click')
+    const json = JSON.stringify({ username, password })
+    console.log('submit click', { username, password }, JSON.stringify({ username, password }))
 
     try {
       const data = await request(
         '/api/auth/register',
         'POST',
-        { username, password },
-        {}
+          {json},
+        {
+            'Access-Control-Allow-Origin': "*"
+        }
       ).then((data2) => console.log('here is response data', data2))
       console.log('data is', data)
     } catch (e) {
@@ -27,21 +30,6 @@ const RegisterForm = ({ initialValues, validationSchema, onClick }) => {
       initialValues={initialValues}
       validationSchema={validationSchema}
       onSubmit={(fields) => registerHandler(fields)}
-      // onSubmit={async (values, { setSubmitting }) => {
-      //   const res = await fetch(`/api/auth/register`, {
-      //     method: 'POST',
-      //   }).then(response => {
-      //     console.log('response', response)
-      //     response.json();
-      //   });
-      //   console.log(res);
-      //   //props = res;
-      //   //return props;
-      //   setTimeout(() => {
-      //     alert(JSON.stringify(res, null, 2));
-      //     setSubmitting(false);
-      //   }, 400);
-      // }}
       render={({ errors, touched }) => (
         <Form>
           <FormField

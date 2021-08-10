@@ -1,5 +1,4 @@
 const { Router } = require('express')
-const { check, validatioResult } = require('express-validator')
 const config = require('config')
 const bcrypt = require('bcryptjs')
 const jwt = require('jsonwebtoken')
@@ -9,27 +8,12 @@ const router = Router()
 // /api/auth/register
 router.post(
   '/register',
-  [
-    check('username', 'username is incorrect').exists(),
-    check('password', 'minimal length is 4 letters').isLength({
-      min: 4,
-    }),
-  ],
   async (req, res) => {
     console.log('here is request', req.body)
     try {
-      const errors = validatioResult(req)
-
-      if (!errors.isEmpty())
-        return res.status(400).json({
-          errors: errors.array(),
-          message: 'incorrect registration data',
-        })
-
       const { username, password } = req.body
-
       const candidate = await User.findOne({ username })
-
+      console.log(username, password, candidate)
       if (candidate)
         return res.status(400).json({ message: 'There is such user' })
 
@@ -47,22 +31,8 @@ router.post(
 // /api/auth/login
 router.post(
   '/login',
-  [
-    check('username', 'username is incorrect').exists(),
-    check('password', 'minimal length is 6 letters').exists().isLength({
-      min: 4,
-    }),
-  ],
   async (req, res) => {
     try {
-      const errors = validatioResult(req)
-
-      if (!errors.isEmpty())
-        return res.status(400).json({
-          errors: errors.array(),
-          message: 'incorrect login data',
-        })
-
       const { username, password } = req.body
       const user = await User.findOne({ username })
 

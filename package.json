@@ -13,7 +13,7 @@
     "type": "git",
     "url": ""
   },
-  "proxy": "http://localhost:7000",
+  "proxy": "http://localhost:5000",
   "keywords": [],
   "author": "illia zaliatskyi",
   "license": "ISC",
@@ -23,7 +23,6 @@
     "bootstrap": "5.0.2",
     "config": "^3.3.6",
     "express": "^4.17.1",
-    "express-validator": "^6.12.1",
     "formik": "^2.2.9",
     "jsonwebtoken": "^8.5.1",
     "materialize-sass": "^0.98.2",
