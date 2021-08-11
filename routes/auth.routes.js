@@ -9,11 +9,11 @@ const router = Router()
 router.post(
   '/register',
   async (req, res) => {
-    console.log('here is request', req.body)
+
     try {
       const { username, password } = req.body
       const candidate = await User.findOne({ username })
-      console.log(username, password, candidate)
+
       if (candidate)
         return res.status(400).json({ message: 'There is such user' })
 
