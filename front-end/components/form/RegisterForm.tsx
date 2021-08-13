@@ -3,23 +3,17 @@ import FormField from './Field'
 import styles from '../../styles/helpers/auth.module.scss'
 import Button from './Button'
 import { useHttp } from '../../hooks/http.hook'
+import env from '../../variables/env'
 
 const RegisterForm = ({ initialValues, validationSchema, onClick }) => {
   const { loading, request } = useHttp()
 
   const registerHandler = async ({ username, password }) => {
-    const json = JSON.stringify({ username, password })
-    console.log('submit click', { username, password }, JSON.stringify({ username, password }))
-
     try {
-      const data = await request(
-        '/api/auth/register',
-        'POST',
-          {json},
-        {
-            'Access-Control-Allow-Origin': "*"
-        }
-      ).then((data2) => console.log('here is response data', data2))
+      const data = await request(`${env.apiUrl}/api/auth/register`, 'POST', {
+        username,
+        password,
+      }).then((data2) => console.log('here is response data', data2))
       console.log('data is', data)
     } catch (e) {
       console.log(e)

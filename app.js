@@ -8,17 +8,21 @@ const app = express()
 const PORT = config.get('port') || 5000
 
 app.use(express.json({ extended: true }))
+app.use((req, res, next) => {
+  res.header('Access-Control-Allow-Headers', '*')
+  res.header('Access-Control-Allow-Origin', '*')
+  res.header('Access-Control-Allow-Methods', 'GET, OPTIONS, POST, PUT')
+  next()
+})
 app.use('/api/auth', router)
 
 async function start() {
   try {
-    await mongoose
-      .connect(config.get('mongoUrl'), {
-        useNewUrlParser: true,
-        useUnifiedTopology: true,
-        useCreateIndex: true,
-      })
-      .then((db) => console.log('here is db', db))
+    await mongoose.connect(config.get('mongoUrl'), {
+      useNewUrlParser: true,
+      useUnifiedTopology: true,
+      useCreateIndex: true,
+    })
     app.listen(PORT, () => console.log(`app is started on port ${PORT}`))
   } catch (e) {
     console.log('Server Error', e.message)
