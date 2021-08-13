@@ -30,3 +30,7 @@ a {
 .page__wrapper {
   padding: 70px 15px 15px;
 }
+
+.loader {
+  @include center();
+}

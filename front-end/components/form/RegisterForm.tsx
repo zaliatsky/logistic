@@ -3,6 +3,7 @@ import { NotificationManager } from 'react-notifications'
 import FormField from './Field'
 import styles from '../../styles/helpers/auth.module.scss'
 import Button from './Button'
+import Loader from '../loader'
 import { useHttp } from '../../hooks/http.hook'
 import env from '../../variables/env'
 
@@ -84,6 +85,7 @@ const RegisterForm = ({ initialValues, validationSchema, onClick }) => {
               />
             </div>
             <button type="reset">Reset Fields</button>
+            {loading && <Loader />}
           </div>
         </Form>
       )}
