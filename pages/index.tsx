@@ -1,7 +1,13 @@
 import Auth from './auth'
+import { NotificationContainer } from 'react-notifications'
 
 const MainPage = () => {
-  return <Auth />
+  return (
+    <>
+      <Auth />
+      <NotificationContainer />
+    </>
+  )
 }
 
 export default MainPage

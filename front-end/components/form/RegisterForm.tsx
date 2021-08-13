@@ -1,4 +1,5 @@
 import { Form, Formik } from 'formik'
+import { NotificationManager } from 'react-notifications'
 import FormField from './Field'
 import styles from '../../styles/helpers/auth.module.scss'
 import Button from './Button'
@@ -10,13 +11,18 @@ const RegisterForm = ({ initialValues, validationSchema, onClick }) => {
 
   const registerHandler = async ({ username, password }) => {
     try {
-      const data = await request(`${env.apiUrl}/api/auth/register`, 'POST', {
+      await request(`${env.apiUrl}/api/auth/register`, 'POST', {
         username,
         password,
-      }).then((data2) => console.log('here is response data', data2))
-      console.log('data is', data)
+      }).then((success) =>
+        NotificationManager.success(
+          success.message,
+          'Registration success',
+          8000
+        )
+      )
     } catch (e) {
-      console.log(e)
+      NotificationManager.error(e.message, 'Registration error', 8000)
     }
   }
   return (
