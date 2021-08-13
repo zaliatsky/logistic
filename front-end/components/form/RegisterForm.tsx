@@ -12,7 +12,7 @@ const RegisterForm = ({ initialValues, validationSchema, onClick }) => {
 
   const registerHandler = async ({ username, password }) => {
     try {
-      await request(`${env.apiUrl}/api/auth/register`, 'POST', {
+      await request(`${env.apiUrl}/auth/register`, 'POST', {
         username,
         password,
       }).then((success) =>
