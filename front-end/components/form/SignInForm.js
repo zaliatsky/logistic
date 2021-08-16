@@ -2,15 +2,35 @@ import { Form, Formik } from 'formik'
 import FormField from './Field'
 import styles from '../../styles/helpers/auth.module.scss'
 import Button from './Button'
+import { useHttp } from '../../hooks/http.hook'
+import { NotificationManager } from 'react-notifications'
+import env from '../../variables/env'
+import userStore from '../../stores/user'
+import Loader from '../loader'
 
 const SignInForm = ({ initialValues, validationSchema, onClick }) => {
+  const { loading, request } = useHttp()
+
+  const loginHandler = async ({ username, password }) => {
+    try {
+      await request(`${env.apiUrl}auth/login`, 'POST', {
+        username,
+        password,
+      }).then(({ token, userId }) => {
+        userStore.login(token, userId)
+      })
+    } catch (e) {
+      NotificationManager.error(e.message, 'Sign in error', 8000)
+    }
+  }
+
+  const clearHandler = () => userStore.logout()
+
   return (
     <Formik
       initialValues={initialValues}
       validationSchema={validationSchema}
-      onSubmit={(fields) => {
-        alert('SUCCESS!! :-)\n\n' + JSON.stringify(fields, null, 4))
-      }}
+      onSubmit={(fields) => loginHandler(fields)}
       render={({ errors, touched }) => (
         <Form>
           <FormField
@@ -40,7 +60,7 @@ const SignInForm = ({ initialValues, validationSchema, onClick }) => {
                 btnType={'submit'}
                 hasArrow={false}
                 onClick={null}
-                disabled={null}
+                disabled={loading}
               />
 
               <Button
@@ -53,8 +73,11 @@ const SignInForm = ({ initialValues, validationSchema, onClick }) => {
                 disabled={null}
               />
             </div>
-            <button type="reset">Reset Fields</button>
+            <button type="reset" onClick={clearHandler}>
+              Reset Fields
+            </button>
           </div>
+          {loading && <Loader />}
         </Form>
       )}
     />
