@@ -27,7 +27,7 @@ const Intro = () => {
           <FontAwesomeIcon
             className={styles.intro__buttonIcon}
             icon={faChevronRight}
-            size={'1x'}
+            size="1x"
           />
         </button>
       </div>
