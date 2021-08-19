@@ -35,27 +35,27 @@ const RegisterForm = ({ initialValues, validationSchema, onClick }) => {
       render={({ errors, touched }) => (
         <Form>
           <FormField
-            name={'username'}
-            inputType={'text'}
-            labelName={'Username'}
+            name="username"
+            inputType="text"
+            labelName="Username"
             className={
               'form-control' +
               (errors.username && touched.username ? ' is-invalid' : '')
             }
           />
           <FormField
-            name={'password'}
-            inputType={'password'}
-            labelName={'Password'}
+            name="password"
+            inputType="password"
+            labelName="Password"
             className={
               'form-control' +
               (errors.password && touched.password ? ' is-invalid' : '')
             }
           />
           <FormField
-            name={'confirmPassword'}
-            inputType={'password'}
-            labelName={'Confirm Password'}
+            name="confirmPassword"
+            inputType="password"
+            labelName="Confirm Password"
             className={
               'form-control' +
               (errors.confirmPassword && touched.confirmPassword
@@ -68,8 +68,8 @@ const RegisterForm = ({ initialValues, validationSchema, onClick }) => {
               <Button
                 wrapperClass={`${styles.auth__formBtnWrapper} ${styles.register}`}
                 btnClass={`${styles.auth__formBtn}`}
-                text={'Register'}
-                btnType={'submit'}
+                text="Register"
+                btnType="submit"
                 hasArrow={false}
                 onClick={null}
                 disabled={loading}
@@ -78,8 +78,8 @@ const RegisterForm = ({ initialValues, validationSchema, onClick }) => {
               <Button
                 wrapperClass={`${styles.auth__formBtnWrapper} ${styles.signin}`}
                 btnClass={styles.auth__formBtn}
-                text={'Sign In'}
-                btnType={'button'}
+                text="Sign In"
+                btnType="button"
                 hasArrow={true}
                 onClick={onClick}
                 disabled={null}

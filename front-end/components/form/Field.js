@@ -14,11 +14,7 @@ const FormField = ({ name, inputType, className, labelName }) => {
         className={className}
         autoComplete={name}
       />
-      <ErrorMessage
-        name={name}
-        component={'div'}
-        className={'invalid-feedback'}
-      />
+      <ErrorMessage name={name} component="div" className="invalid-feedback" />
     </div>
   )
 }

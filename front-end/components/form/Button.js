@@ -20,7 +20,7 @@ const Button = ({
           <FontAwesomeIcon
             className={styles.auth__formBtnIcon}
             icon={faArrowRight}
-            size={'1x'}
+            size="1x"
           />
         )}
       </button>
