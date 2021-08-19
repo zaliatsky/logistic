@@ -1,5 +1,7 @@
+import MainLayout from '../../front-end/components/MainLayout'
+
 const Game = () => {
-  return <div>This is game page!</div>
+  return <MainLayout title={'Game'}>This is game page!</MainLayout>
 }
 
 export default Game
