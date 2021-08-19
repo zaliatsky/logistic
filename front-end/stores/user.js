@@ -14,6 +14,10 @@ class userStore {
     console.log('here we use logout', this)
     this.user = {}
   }
+
+  getUserData() {
+    return this.user
+  }
 }
 
 export default new userStore()

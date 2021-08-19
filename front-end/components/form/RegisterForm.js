@@ -12,19 +12,19 @@ const RegisterForm = ({ initialValues, validationSchema, onClick }) => {
 
   const registerHandler = async ({ username, password }) => {
     try {
-      await request(`${env.apiUrl}auth/register`, 'POST', {
+      await request(`${env.apiUrl}/auth/register`, 'POST', {
         username,
         password,
       }).then((success) => {
         NotificationManager.success(
           success.message,
           'Registration success',
-          8000
+          5000
         )
         onClick()
       })
     } catch (e) {
-      NotificationManager.error(e.message, 'Registration error', 8000)
+      NotificationManager.error(e.message, 'Registration error', 5000)
     }
   }
   return (

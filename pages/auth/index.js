@@ -10,7 +10,7 @@ import {
 } from '../../front-end/variables/form'
 
 const Auth = () => {
-  const [isRegister, changeFormType] = useState(true)
+  const [isRegister, changeFormType] = useState(false)
 
   const changeForm = () => {
     changeFormType(!isRegister)

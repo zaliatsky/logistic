@@ -7,17 +7,25 @@ import { NotificationManager } from 'react-notifications'
 import env from '../../variables/env'
 import userStore from '../../stores/user'
 import Loader from '../loader'
+import { useRouter } from 'next/router'
 
 const SignInForm = ({ initialValues, validationSchema, onClick }) => {
   const { loading, request } = useHttp()
+  const router = useRouter()
 
   const loginHandler = async ({ username, password }) => {
     try {
-      await request(`${env.apiUrl}auth/login`, 'POST', {
+      await request(`${env.apiUrl}/auth/login`, 'POST', {
         username,
         password,
-      }).then(({ token, userId }) => {
-        userStore.login(token, userId)
+      }).then(({ token = null, userId = null }) => {
+        if (token) {
+          userStore.login(token, userId)
+          NotificationManager.success('Login success', '', 1000)
+          setTimeout(() => {
+            router.push('/game')
+          }, 2000)
+        }
       })
     } catch (e) {
       NotificationManager.error(e.message, 'Sign in error', 8000)
