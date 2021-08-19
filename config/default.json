@@ -1,0 +1,5 @@
+{
+  "port": 5000,
+  "mongoUrl": "mongodb+srv://illia:1234@cluster0.39pcz.mongodb.net/app?retryWrites=true&w=majority",
+  "jwtSecret": "hotel app secret key"
+}

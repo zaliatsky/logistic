@@ -1,8 +1,8 @@
-import MainLayout from '../../components/MainLayout';
+import MainLayout from '../../front-end/components/MainLayout';
 
 const Hotels = () => {
   return (
-    <MainLayout title={"Hotels"}>this is all hotels page!</MainLayout>
+    <MainLayout title="Hotels">this is all hotels page!</MainLayout>
   )
 }
 
