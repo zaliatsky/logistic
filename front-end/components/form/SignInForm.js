@@ -23,7 +23,7 @@ const SignInForm = ({ initialValues, validationSchema, onClick }) => {
           userStore.login(token, userId)
           NotificationManager.success('Login success', '', 1000)
           setTimeout(() => {
-            router.push('/game')
+            router.push('/intro')
           }, 2000)
         }
       })

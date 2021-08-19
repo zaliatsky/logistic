@@ -1,0 +1,55 @@
+@import './helpers/variables';
+@import './helpers/mixins';
+
+.intro {
+  &__holder {
+    width: 100vw;
+    height: 100vh;
+    background: url("../../public/intro-holder.jpg") center center no-repeat;
+  }
+
+  &__wrapper {
+    @include center();
+    background: rgba($white, .9);
+    padding: 30px;
+    border-radius: 10px;
+
+    max-width: 650px;
+    text-align: center;
+  }
+
+  &__text {
+    font-size: 20px;
+    font-weight: 300;
+    line-height: 30px;
+
+    p {
+      margin-bottom: 10px;
+    }
+  }
+
+  &__button {
+    display: block;
+    border-radius: 10px;
+    margin: 20px auto 0;
+    padding: 10px 30px;
+    background: $aqua;
+    color: $white;
+    font-size: 36px;
+    font-weight: 500;
+
+    &:hover {
+      .intro__buttonIcon {
+        left: 5px;
+      }
+    }
+
+    &Icon {
+      @include transition(.3, ease);
+      position: relative;
+      left: 0;
+      margin-left: 10px;
+      font-size: .75em;
+    }
+  }
+}
