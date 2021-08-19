@@ -42,18 +42,18 @@ const SignInForm = ({ initialValues, validationSchema, onClick }) => {
       render={({ errors, touched }) => (
         <Form>
           <FormField
-            name={'username'}
-            inputType={'text'}
-            labelName={'Username'}
+            name="username"
+            inputType="text"
+            labelName="Username"
             className={
               'form-control' +
               (errors.username && touched.username ? ' is-invalid' : '')
             }
           />
           <FormField
-            name={'password'}
-            inputType={'password'}
-            labelName={'Password'}
+            name="password"
+            inputType="password"
+            labelName="Password"
             className={
               'form-control' +
               (errors.password && touched.password ? ' is-invalid' : '')
@@ -64,8 +64,8 @@ const SignInForm = ({ initialValues, validationSchema, onClick }) => {
               <Button
                 wrapperClass={`${styles.auth__formBtnWrapper} ${styles.signin}`}
                 btnClass={styles.auth__formBtn}
-                text={'Sign In'}
-                btnType={'submit'}
+                text="Sign In"
+                btnType="submit"
                 hasArrow={false}
                 onClick={null}
                 disabled={loading}
@@ -74,8 +74,8 @@ const SignInForm = ({ initialValues, validationSchema, onClick }) => {
               <Button
                 wrapperClass={`${styles.auth__formBtnWrapper} ${styles.register}`}
                 btnClass={`${styles.auth__formBtn}`}
-                text={'Register'}
-                btnType={'button'}
+                text="Register"
+                btnType="button"
                 hasArrow={true}
                 onClick={onClick}
                 disabled={null}

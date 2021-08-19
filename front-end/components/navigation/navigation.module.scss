@@ -1,4 +1,5 @@
 @import '../../styles/helpers/variables';
+@import '../../styles/helpers/mixins';
 
 .navigation {
   background: $dark-nav;
@@ -11,13 +12,15 @@
   right: 0;
   padding: 15px;
 
-  &Link {
+  &Link{
+    @include transition(.3, ease);
     margin-right: 20px;
     color: $white;
     text-transform: capitalize;
+    cursor: pointer;
 
     &:hover {
-      color: lighten(#111, 10%);
+      color: darken($white, 30%);
     }
 
     &:last-child {
