@@ -9,7 +9,7 @@ const MainLayout = ({ children, title = '' }) => {
         <title>Hotel Network App | {title}</title>
       </Head>
       <Navigation />
-      <main className={'page__wrapper'}>{children}</main>
+      {children}
     </Fragment>
   )
 }

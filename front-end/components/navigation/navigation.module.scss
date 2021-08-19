@@ -1,5 +1,9 @@
+@import '../../styles/helpers/variables';
+
 .navigation {
+  background: $dark-nav;
   display: flex;
+  justify-content: space-between;
   align-items: center;
   position: fixed;
   top: 0;
@@ -9,7 +13,7 @@
 
   &Link {
     margin-right: 20px;
-    color: #111;
+    color: $white;
     text-transform: capitalize;
 
     &:hover {
@@ -18,6 +22,11 @@
 
     &:last-child {
       margin-right: 0;
+    }
+
+    &s {
+      display: flex;
+      align-items: center;
     }
   }
 }
