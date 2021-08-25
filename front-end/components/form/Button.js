@@ -10,22 +10,21 @@ const Button = ({
   text,
   onClick,
   disabled,
-}) => {
-  return (
-    <div className={wrapperClass} onClick={onClick}>
-      <div className={styles.auth__formBtnBg} />
-      <button type={btnType} className={btnClass} {...disabled}>
-        {text}
-        {hasArrow && (
-          <FontAwesomeIcon
-            className={styles.auth__formBtnIcon}
-            icon={faArrowRight}
-            size="1x"
-          />
-        )}
-      </button>
-    </div>
-  )
-}
+}) => (
+  <div className={wrapperClass} onClick={onClick}>
+    <div className={styles.auth__formBtnBg} />
+    <button type={btnType} className={btnClass} {...disabled}>
+      {text}
+      {hasArrow && (
+        <FontAwesomeIcon
+          className={styles.auth__formBtnIcon}
+          icon={faArrowRight}
+          size="1x"
+        />
+      )}
+    </button>
+  </div>
+)
+
 
 export default Button
