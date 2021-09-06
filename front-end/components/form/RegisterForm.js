@@ -4,28 +4,27 @@ import FormField from './Field'
 import styles from '../../styles/helpers/auth.module.scss'
 import Button from './Button'
 import Loader from '../loader'
-import { useHttp } from '../../hooks/http.hook'
 import env from '../../variables/env'
 
 const RegisterForm = ({ initialValues, validationSchema, onClick }) => {
   const { loading, request } = useHttp()
 
   const registerHandler = async ({ username, password }) => {
-    try {
-      await request(`${env.apiUrl}/auth/register`, 'POST', {
-        username,
-        password,
-      }).then((success) => {
-        NotificationManager.success(
-          success.message,
-          'Registration success',
-          5000
-        )
-        onClick()
-      })
-    } catch (e) {
-      NotificationManager.error(e.message, 'Registration error', 5000)
-    }
+    // try {
+    //   await request(`${env.apiUrl}/auth/register`, 'POST', {
+    //     username,
+    //     password,
+    //   }).then((success) => {
+    //     NotificationManager.success(
+    //       success.message,
+    //       'Registration success',
+    //       5000
+    //     )
+    //     onClick()
+    //   })
+    // } catch (e) {
+    //   NotificationManager.error(e.message, 'Registration error', 5000)
+    // }
   }
   return (
     <Formik

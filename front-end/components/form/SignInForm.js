@@ -2,7 +2,6 @@ import { Form, Formik } from 'formik'
 import FormField from './Field'
 import styles from '../../styles/helpers/auth.module.scss'
 import Button from './Button'
-import { useHttp } from '../../hooks/http.hook'
 import { NotificationManager } from 'react-notifications'
 import env from '../../variables/env'
 import userStore from '../../stores/user'
@@ -10,26 +9,29 @@ import Loader from '../loader'
 import { useRouter } from 'next/router'
 
 const SignInForm = ({ initialValues, validationSchema, onClick }) => {
-  const { loading, request } = useHttp()
   const router = useRouter()
 
-  const loginHandler = async ({ username, password }) => {
-    try {
-      await request(`${env.apiUrl}/auth/login`, 'POST', {
-        username,
-        password,
-      }).then(({ token = null, userId = null }) => {
-        if (token) {
-          userStore.login(token, userId)
-          NotificationManager.success('Login success', '', 1000)
-          setTimeout(() => {
-            router.push('/game')
-          }, 2000)
-        }
-      })
-    } catch (e) {
-      NotificationManager.error(e.message, 'Sign in error', 8000)
-    }
+  const loginHandler = ({ username, password }) => {
+    // try {
+    //   await request(`${env.apiUrl}/auth/login`, 'POST', {
+    //     username,
+    //     password,
+    //   }).then(({ token = null, userId = null }) => {
+    //     if (token) {
+    //       userStore.login(token, userId)
+    //       NotificationManager.success('Login success', '', 1000)
+    //       // setTimeout(() => {
+    //       //   router.push('/game')
+    //       // }, 2000)
+    //     }
+    //   })
+    // } catch (e) {
+    //   NotificationManager.error(e.message, 'Sign in error', 8000)
+    // }
+
+    userStore.checkUser(username, password)
+
+    // userStore.
   }
 
   const clearHandler = () => userStore.logout()
@@ -68,7 +70,7 @@ const SignInForm = ({ initialValues, validationSchema, onClick }) => {
                 btnType="submit"
                 hasArrow={false}
                 onClick={null}
-                disabled={loading}
+                disabled={false}
               />
 
               <Button
@@ -85,7 +87,7 @@ const SignInForm = ({ initialValues, validationSchema, onClick }) => {
               Reset Fields
             </button>
           </div>
-          {loading && <Loader />}
+          {/*{loading && <Loader />}*/}
         </Form>
       )}
     />
