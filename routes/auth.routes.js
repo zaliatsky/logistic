@@ -4,6 +4,7 @@ const bcrypt = require('bcryptjs')
 const jwt = require('jsonwebtoken')
 const User = require('../models/User')
 const router = Router()
+const incorrectStatus = 400
 
 // /api/auth/register
 router.post('/register', async (req, res) => {
@@ -12,7 +13,7 @@ router.post('/register', async (req, res) => {
     const candidate = await User.findOne({ username })
 
     if (candidate)
-      return res.status(400).json({ message: 'There is such user' })
+      return res.status(incorrectStatus).json({ message: 'There is such user' })
 
     const hashedPassword = await bcrypt.hash(password, 12)
     const user = new User({ username, password: hashedPassword })
@@ -30,14 +31,14 @@ router.post('/login', async (req, res) => {
     const { username, password } = req.body
     const user = await User.findOne({ username })
 
-    if (!user) return res.status(400).json({ message: 'User not find' })
+    if (!user) return res.status(incorrectStatus).json({ message: 'User not find'})
 
     const isPasswordMatch = await bcrypt.compare(password, user.password)
 
     if (!isPasswordMatch)
       return res
-        .status(400)
-        .json({ message: 'password is incorrect, try again' })
+        .status(incorrectStatus)
+        .json({ message: 'password is incorrect, try again'})
 
     const token = jwt.sign({ userId: user.id }, config.get('jwtSecret'), {
       expiresIn: '1h',

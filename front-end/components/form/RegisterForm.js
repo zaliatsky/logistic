@@ -3,11 +3,12 @@ import { NotificationManager } from 'react-notifications'
 import FormField from './Field'
 import styles from '../../styles/helpers/auth.module.scss'
 import Button from './Button'
+import userStore from '../../stores/user'
 import Loader from '../loader'
 import env from '../../variables/env'
 
 const RegisterForm = ({ initialValues, validationSchema, onClick }) => {
-  const { loading, request } = useHttp()
+  // const { loading, request } = useHttp()
 
   const registerHandler = async ({ username, password }) => {
     // try {
@@ -25,6 +26,7 @@ const RegisterForm = ({ initialValues, validationSchema, onClick }) => {
     // } catch (e) {
     //   NotificationManager.error(e.message, 'Registration error', 5000)
     // }
+    userStore.registerUser(username, password).then(response => console.log('response', response))
   }
   return (
     <Formik
@@ -71,7 +73,7 @@ const RegisterForm = ({ initialValues, validationSchema, onClick }) => {
                 btnType="submit"
                 hasArrow={false}
                 onClick={null}
-                disabled={loading}
+                disabled={false}
               />
 
               <Button
@@ -85,7 +87,7 @@ const RegisterForm = ({ initialValues, validationSchema, onClick }) => {
               />
             </div>
             <button type="reset">Reset Fields</button>
-            {loading && <Loader />}
+            {/*{loading && <Loader />}*/}
           </div>
         </Form>
       )}

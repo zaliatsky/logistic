@@ -3,7 +3,6 @@ import FormField from './Field'
 import styles from '../../styles/helpers/auth.module.scss'
 import Button from './Button'
 import { NotificationManager } from 'react-notifications'
-import env from '../../variables/env'
 import userStore from '../../stores/user'
 import Loader from '../loader'
 import { useRouter } from 'next/router'
@@ -12,26 +11,23 @@ const SignInForm = ({ initialValues, validationSchema, onClick }) => {
   const router = useRouter()
 
   const loginHandler = ({ username, password }) => {
-    // try {
-    //   await request(`${env.apiUrl}/auth/login`, 'POST', {
-    //     username,
-    //     password,
-    //   }).then(({ token = null, userId = null }) => {
-    //     if (token) {
-    //       userStore.login(token, userId)
-    //       NotificationManager.success('Login success', '', 1000)
-    //       // setTimeout(() => {
-    //       //   router.push('/game')
-    //       // }, 2000)
-    //     }
-    //   })
-    // } catch (e) {
-    //   NotificationManager.error(e.message, 'Sign in error', 8000)
-    // }
+      userStore.checkUser(username, password).then(response => {
+        const { token, userId } = response
 
-    userStore.checkUser(username, password)
+        if (token) {
+          userStore.login(token, userId)
+          NotificationManager.success('Login success', '', 1000)
+          setTimeout(() => {
+            router.push('/game')
+          }, 2000)
+        } else {
+          throw new Error(JSON.stringify(response))
+        }
+    }).catch(error => {
+      const { message } = JSON.parse(error.message)
 
-    // userStore.
+      NotificationManager.error(message, 'Sign in error', 8000)
+    })
   }
 
   const clearHandler = () => userStore.logout()

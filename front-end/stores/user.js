@@ -24,23 +24,29 @@ class userStore {
   }
 
   async registerUser(username, password) {
-    await fetch(`${env.apiUrl}/auth/register`, {
+    const data = JSON.stringify({username, password})
+    const response = await fetch(`${env.apiUrl}/auth/register`, {
       method: 'POST',
-      body: { username, password }
-    }).then(res => {
-      console.log("Request complete! response:", res);
-    });
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: data
+    })
+
+    return response.json()
   }
 
   async checkUser(username, password) {
-    await fetch(`${env.apiUrl}/auth/login`, {
+    const data = JSON.stringify({username, password})
+    const response = await fetch(`${env.apiUrl}/auth/login`, {
       method: 'POST',
-      username,
-      password,
-    }).then(({ token = null, userId = null }) => {
-      console.log(token, userId)
-      return {token, userId}
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: data
     })
+
+    return response.json()
   }
 }
 
