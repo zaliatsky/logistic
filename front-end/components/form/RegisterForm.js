@@ -5,10 +5,14 @@ import styles from '../../styles/helpers/auth.module.scss'
 import Button from './Button'
 import userStore from '../../stores/user'
 import Loader from '../loader'
+import { observer } from 'mobx-react'
+import globalStore from '../../stores/global'
 
-const RegisterForm = ({ initialValues, validationSchema, onClick }) => {
+const RegisterForm = observer(({ initialValues, validationSchema, onClick }) => {
   const registerHandler = async ({ username, password }) => {
+    globalStore.changeLoader(true)
     userStore.registerUser(username, password).then(({ message, status }) => {
+      globalStore.changeLoader(false)
       if (status >= 300) {
         NotificationManager.error(
           message,
@@ -25,6 +29,7 @@ const RegisterForm = ({ initialValues, validationSchema, onClick }) => {
       }
     })
   }
+  const clearHandler = () => userStore.logout()
 
   return (
     <Formik
@@ -84,13 +89,13 @@ const RegisterForm = ({ initialValues, validationSchema, onClick }) => {
                 disabled={false}
               />
             </div>
-            <button type="reset">Reset Fields</button>
-            {/*{loading && <Loader />}*/}
+            <button type="reset" onClick={clearHandler}>Reset Fields</button>
+            {globalStore.isLoading && <Loader />}
           </div>
         </Form>
       )}
     />
   )
-}
+})
 
 export default RegisterForm

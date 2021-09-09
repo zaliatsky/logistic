@@ -1,9 +1,10 @@
 import { makeObservable, action, flow, observable } from 'mobx'
+import globalStore from './global'
 import env from "../variables/env"
 
 class userStore {
-  user
-  nickname
+  user = {}
+  nickname = ''
 
   constructor(user, nickname) {
     makeObservable(this, {
@@ -14,8 +15,8 @@ class userStore {
       registerUser: flow,
       checkUser: flow
     })
-    this.user = {}
-    this.nickname = {}
+    this.user = user
+    this.nickname = nickname
   }
 
   login(userId, token) {
