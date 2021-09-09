@@ -6,8 +6,9 @@ import { NotificationManager } from 'react-notifications'
 import userStore from '../../stores/user'
 import Loader from '../loader'
 import { useRouter } from 'next/router'
+import { observer } from 'mobx-react'
 
-const SignInForm = ({ initialValues, validationSchema, onClick }) => {
+const SignInForm = observer(({ initialValues, validationSchema, onClick }) => {
   const router = useRouter()
 
   const loginHandler = ({ username, password }) => {
@@ -88,6 +89,6 @@ const SignInForm = ({ initialValues, validationSchema, onClick }) => {
       )}
     />
   )
-}
+})
 
 export default SignInForm

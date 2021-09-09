@@ -1,18 +1,21 @@
 import { makeObservable, action, flow, observable } from 'mobx'
-import env from "../variables/env";
-import { NotificationManager } from "react-notifications";
+import env from "../variables/env"
 
 class userStore {
   user
+  nickname
 
-  constructor(user) {
+  constructor(user, nickname) {
     makeObservable(this, {
       user: observable,
+      nickname: observable,
       login: action,
       logout: action,
-      registerUser: flow
+      registerUser: flow,
+      checkUser: flow
     })
-    this.user = user
+    this.user = {}
+    this.nickname = {}
   }
 
   login(userId, token) {
@@ -23,9 +26,9 @@ class userStore {
     this.user = {}
   }
 
-  async registerUser(username, password) {
+  *registerUser(username, password) {
     const data = JSON.stringify({username, password})
-    const response = await fetch(`${env.apiUrl}/auth/register`, {
+    const response = yield fetch(`${env.apiUrl}/auth/register`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json'
@@ -36,9 +39,9 @@ class userStore {
     return response.json()
   }
 
-  async checkUser(username, password) {
+  *checkUser(username, password) {
     const data = JSON.stringify({username, password})
-    const response = await fetch(`${env.apiUrl}/auth/login`, {
+    const response = yield fetch(`${env.apiUrl}/auth/login`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json'
