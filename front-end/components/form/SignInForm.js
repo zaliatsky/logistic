@@ -6,15 +6,11 @@ import { NotificationManager } from 'react-notifications'
 import userStore from '../../stores/user'
 import Loader from '../loader'
 import { useRouter } from 'next/router'
-import { observer } from 'mobx-react'
 
-const SignInForm = observer(({ initialValues, validationSchema, onClick }) => {
+const SignInForm = ({ initialValues, validationSchema, onClick }) => {
   const router = useRouter()
-
   const loginHandler = ({ username, password }) => {
-      userStore.checkUser(username, password).then(response => {
-        const { token, userId } = response
-
+      userStore.checkUser(username, password).then(({ token, userId, message }) => {
         if (token) {
           userStore.login(token, userId)
           NotificationManager.success('Login success', '', 1000)
@@ -22,15 +18,10 @@ const SignInForm = observer(({ initialValues, validationSchema, onClick }) => {
             router.push('/game')
           }, 2000)
         } else {
-          throw new Error(JSON.stringify(response))
+          NotificationManager.error(message, 'Sign in error', 8000)
         }
-    }).catch(error => {
-      const { message } = JSON.parse(error.message)
-
-      NotificationManager.error(message, 'Sign in error', 8000)
     })
   }
-
   const clearHandler = () => userStore.logout()
 
   return (
@@ -89,6 +80,6 @@ const SignInForm = observer(({ initialValues, validationSchema, onClick }) => {
       )}
     />
   )
-})
+}
 
 export default SignInForm

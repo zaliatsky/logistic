@@ -5,6 +5,8 @@ const jwt = require('jsonwebtoken')
 const User = require('../models/User')
 const router = Router()
 const incorrectStatus = 400
+const invalidStatus = 500
+const successStatus = 201
 
 // /api/auth/register
 router.post('/register', async (req, res) => {
@@ -13,14 +15,14 @@ router.post('/register', async (req, res) => {
     const candidate = await User.findOne({ username })
 
     if (candidate)
-      return res.status(incorrectStatus).json({ message: 'There is such user' })
+      return res.status(incorrectStatus).json({ message: 'There is such user', status: incorrectStatus })
 
     const hashedPassword = await bcrypt.hash(password, 12)
     const user = new User({ username, password: hashedPassword })
     await user.save()
-    res.status(201).json({ message: 'User has been created!' })
+    res.status(successStatus).json({ message: 'User has been created!', status: successStatus })
   } catch (e) {
-    res.status(500).json({ message: 'something went wrong, try again' })
+    res.status(invalidStatus).json({ message: 'something went wrong, try again', status: invalidStatus })
   }
 })
 

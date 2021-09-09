@@ -5,29 +5,27 @@ import styles from '../../styles/helpers/auth.module.scss'
 import Button from './Button'
 import userStore from '../../stores/user'
 import Loader from '../loader'
-import env from '../../variables/env'
 
 const RegisterForm = ({ initialValues, validationSchema, onClick }) => {
-  // const { loading, request } = useHttp()
-
   const registerHandler = async ({ username, password }) => {
-    // try {
-    //   await request(`${env.apiUrl}/auth/register`, 'POST', {
-    //     username,
-    //     password,
-    //   }).then((success) => {
-    //     NotificationManager.success(
-    //       success.message,
-    //       'Registration success',
-    //       5000
-    //     )
-    //     onClick()
-    //   })
-    // } catch (e) {
-    //   NotificationManager.error(e.message, 'Registration error', 5000)
-    // }
-    userStore.registerUser(username, password).then(response => console.log('response', response))
+    userStore.registerUser(username, password).then(({ message, status }) => {
+      if (status >= 300) {
+        NotificationManager.error(
+          message,
+          'Registration error',
+          5000
+        )
+      } else {
+        NotificationManager.success(
+          message,
+          'Registration success',
+          5000
+        )
+        onClick()
+      }
+    })
   }
+
   return (
     <Formik
       initialValues={initialValues}
@@ -72,7 +70,7 @@ const RegisterForm = ({ initialValues, validationSchema, onClick }) => {
                 text="Register"
                 btnType="submit"
                 hasArrow={false}
-                onClick={null}
+                onClick={undefined}
                 disabled={false}
               />
 
@@ -83,7 +81,7 @@ const RegisterForm = ({ initialValues, validationSchema, onClick }) => {
                 btnType="button"
                 hasArrow={true}
                 onClick={onClick}
-                disabled={null}
+                disabled={false}
               />
             </div>
             <button type="reset">Reset Fields</button>
