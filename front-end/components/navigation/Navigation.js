@@ -1,8 +1,9 @@
 import Link from 'next/link'
+import { memo } from 'react'
 import navigationParams from '../../variables/nav'
 import navStyles from './navigation.module.scss'
 
-const Navigation = () => {
+const Navigation = memo((props) => {
   return (
     <nav className={navStyles.navigation}>
       {navigationParams.map(({ title, url }) => {
@@ -14,6 +15,6 @@ const Navigation = () => {
       })}
     </nav>
   )
-}
+})
 
 export default Navigation
