@@ -85,7 +85,7 @@ const RegisterForm = observer(({ initialValues, validationSchema, onClick }) => 
                 btnClass={styles.auth__formBtn}
                 text="Sign In"
                 btnType="button"
-                hasArrow={true}
+                hasArrow
                 onClick={onClick}
                 disabled={false}
               />
