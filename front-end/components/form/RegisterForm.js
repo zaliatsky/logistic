@@ -30,6 +30,7 @@ const RegisterForm = observer(({ initialValues, validationSchema, onClick }) => 
     })
   }
   const clearHandler = () => userStore.logout()
+  const { isLoading } = globalStore
 
   return (
     <Formik
@@ -90,8 +91,8 @@ const RegisterForm = observer(({ initialValues, validationSchema, onClick }) => 
               />
             </div>
             <button type="reset" onClick={clearHandler}>Reset Fields</button>
-            {globalStore.isLoading && <Loader />}
           </div>
+          {isLoading && < Loader/>}
         </Form>
       )}
     />

@@ -27,6 +27,7 @@ const SignInForm = observer(({ initialValues, validationSchema, onClick }) => {
     })
   }
   const clearHandler = () => userStore.logout()
+  const { isLoading } = globalStore
 
   return (
     <Formik
@@ -79,7 +80,7 @@ const SignInForm = observer(({ initialValues, validationSchema, onClick }) => {
               Reset Fields
             </button>
           </div>
-          {globalStore.isLoading && <Loader />}
+          {isLoading && < Loader/>}
         </Form>
       )}
     />
