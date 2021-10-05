@@ -62,7 +62,6 @@ const SignInForm = observer(({ initialValues, validationSchema, onClick }) => {
                 text="Sign In"
                 btnType="submit"
                 hasArrow={false}
-                onClick={null}
                 disabled={false}
               />
 

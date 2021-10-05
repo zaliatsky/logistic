@@ -76,7 +76,6 @@ const RegisterForm = observer(({ initialValues, validationSchema, onClick }) => 
                 text="Register"
                 btnType="submit"
                 hasArrow={false}
-                onClick={undefined}
                 disabled={false}
               />
 
