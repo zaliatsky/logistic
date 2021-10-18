@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import styles from '../../front-end/styles/helpers/auth.module.scss'
+import styles from '../../front-end/styles/modules/auth.module.scss'
 import SignInForm from '../../front-end/components/form/SignInForm'
 import RegisterForm from '../../front-end/components/form/RegisterForm'
 import {

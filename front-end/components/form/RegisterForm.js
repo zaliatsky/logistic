@@ -6,7 +6,7 @@ import FormField from './Field'
 import Loader from '../loader'
 import globalStore from '../../stores/global'
 import userStore from '../../stores/user'
-import styles from '../../styles/helpers/auth.module.scss'
+import styles from '../../styles/modules/auth.module.scss'
 
 const RegisterForm = observer(
   ({ initialValues, validationSchema, onClick }) => {

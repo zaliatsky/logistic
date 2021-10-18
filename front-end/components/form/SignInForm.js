@@ -7,7 +7,7 @@ import Loader from '../loader'
 import globalStore from '../../stores/global'
 import userStore from '../../stores/user'
 import { useRouter } from 'next/router'
-import styles from '../../styles/helpers/auth.module.scss'
+import styles from '../../styles/modules/auth.module.scss'
 
 const SignInForm = observer(({ initialValues, validationSchema, onClick }) => {
   const router = useRouter()

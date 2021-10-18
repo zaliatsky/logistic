@@ -1,6 +1,6 @@
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faArrowRight } from '@fortawesome/free-solid-svg-icons'
-import styles from '../../styles/helpers/auth.module.scss'
+import styles from '../../styles/modules/auth.module.scss'
 
 const Button = ({
   wrapperClass,
