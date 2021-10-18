@@ -7,13 +7,15 @@ import { NotificationManager } from 'react-notifications'
 import userStore from '../../stores/user'
 import globalStore from '../../stores/global'
 import { useRouter } from 'next/router'
-import { observer } from "mobx-react"
+import { observer } from 'mobx-react'
 
 const SignInForm = observer(({ initialValues, validationSchema, onClick }) => {
   const router = useRouter()
   const loginHandler = ({ username, password }) => {
-      globalStore.changeLoader(true)
-      userStore.checkUser(username, password).then(({ token, userId, message }) => {
+    globalStore.changeLoader(true)
+    userStore
+      .checkUser(username, password)
+      .then(({ token, userId, message }) => {
         if (token) {
           userStore.login(token, userId)
           NotificationManager.success('Login success', '', 1000)
@@ -24,7 +26,7 @@ const SignInForm = observer(({ initialValues, validationSchema, onClick }) => {
           NotificationManager.error(message, 'Sign in error', 8000)
         }
         globalStore.changeLoader(false)
-    })
+      })
   }
   const clearHandler = () => userStore.logout()
   const { isLoading } = globalStore
@@ -60,7 +62,7 @@ const SignInForm = observer(({ initialValues, validationSchema, onClick }) => {
                 wrapperClass={`${styles.auth__formBtnWrapper} ${styles.signin}`}
                 btnClass={styles.auth__formBtn}
                 text="Sign In"
-                btnType="submit"
+                type="submit"
                 hasArrow={false}
                 disabled={false}
               />
@@ -69,7 +71,7 @@ const SignInForm = observer(({ initialValues, validationSchema, onClick }) => {
                 wrapperClass={`${styles.auth__formBtnWrapper} ${styles.register}`}
                 btnClass={`${styles.auth__formBtn}`}
                 text="Register"
-                btnType="button"
+                type="button"
                 hasArrow
                 onClick={onClick}
                 disabled={null}
@@ -79,7 +81,7 @@ const SignInForm = observer(({ initialValues, validationSchema, onClick }) => {
               Reset Fields
             </button>
           </div>
-          {isLoading && < Loader/>}
+          {isLoading && <Loader />}
         </Form>
       )}
     />

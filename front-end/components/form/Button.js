@@ -5,15 +5,14 @@ import { faArrowRight } from '@fortawesome/free-solid-svg-icons'
 const Button = ({
   wrapperClass,
   btnClass,
-  btnType,
   hasArrow,
   text,
   onClick,
-  disabled,
+  ...rest
 }) => (
   <div className={wrapperClass} onClick={onClick}>
     <div className={styles.auth__formBtnBg} />
-    <button type={btnType} className={btnClass} {...disabled}>
+    <button className={btnClass} {...rest}>
       {text}
       {hasArrow && (
         <FontAwesomeIcon
@@ -25,6 +24,5 @@ const Button = ({
     </button>
   </div>
 )
-
 
 export default Button
