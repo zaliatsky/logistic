@@ -1,12 +1,12 @@
 import { Form, Formik } from 'formik'
-import { NotificationManager } from 'react-notifications'
-import FormField from './Field'
-import styles from '../../styles/helpers/auth.module.scss'
-import Button from './Button'
-import userStore from '../../stores/user'
-import Loader from '../loader'
 import { observer } from 'mobx-react'
+import { NotificationManager } from 'react-notifications'
+import Button from './Button'
+import FormField from './Field'
+import Loader from '../loader'
 import globalStore from '../../stores/global'
+import userStore from '../../stores/user'
+import styles from '../../styles/helpers/auth.module.scss'
 
 const RegisterForm = observer(
   ({ initialValues, validationSchema, onClick }) => {

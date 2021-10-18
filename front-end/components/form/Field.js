@@ -1,5 +1,5 @@
-import styles from '../../styles/helpers/auth.module.scss'
 import { ErrorMessage, Field } from 'formik'
+import styles from '../../styles/helpers/auth.module.scss'
 
 const FormField = ({ name, inputType, className, labelName }) => (
   <div className={styles.auth__formField}>

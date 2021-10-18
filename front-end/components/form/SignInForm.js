@@ -1,13 +1,13 @@
 import { Form, Formik } from 'formik'
-import FormField from './Field'
-import styles from '../../styles/helpers/auth.module.scss'
-import Button from './Button'
-import Loader from '../loader'
-import { NotificationManager } from 'react-notifications'
-import userStore from '../../stores/user'
-import globalStore from '../../stores/global'
-import { useRouter } from 'next/router'
 import { observer } from 'mobx-react'
+import { NotificationManager } from 'react-notifications'
+import Button from './Button'
+import FormField from './Field'
+import Loader from '../loader'
+import globalStore from '../../stores/global'
+import userStore from '../../stores/user'
+import { useRouter } from 'next/router'
+import styles from '../../styles/helpers/auth.module.scss'
 
 const SignInForm = observer(({ initialValues, validationSchema, onClick }) => {
   const router = useRouter()
