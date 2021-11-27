@@ -1,29 +1,28 @@
 import { Form, Formik } from 'formik'
-import { observer } from 'mobx-react'
 import { NotificationManager } from 'react-notifications'
 import Button from './Button'
 import FormField from './Field'
 import Loader from '../loader'
-import globalStore from '../../stores/global'
-import userStore from '../../stores/user'
 import styles from '../../styles/modules/auth.module.scss'
 
-const RegisterForm = observer(
+const RegisterForm = (
   ({ initialValues, validationSchema, onClick }) => {
     const registerHandler = async ({ username, password }) => {
-      globalStore.changeLoader(true)
-      userStore.registerUser(username, password).then(({ message, status }) => {
-        globalStore.changeLoader(false)
-        if (status >= 300) {
-          NotificationManager.error(message, 'Registration error', 5000)
-        } else {
-          NotificationManager.success(message, 'Registration success', 5000)
-          onClick()
-        }
-      })
+      // globalStore.changeLoader(true)
+      // userStore.registerUser(username, password).then(({ message, status }) => {
+      //   globalStore.changeLoader(false)
+      //   if (status >= 300) {
+      //     NotificationManager.error(message, 'Registration error', 5000)
+      //   } else {
+      //     NotificationManager.success(message, 'Registration success', 5000)
+      //     onClick()
+      //   }
+      // })
+
+
     }
-    const clearHandler = () => userStore.logout()
-    const { isLoading } = globalStore
+    const clearHandler = () => {}
+    const isLoading = false
 
     return (
       <Formik

@@ -27,7 +27,6 @@ router.post('/register', async (req, res) => {
 })
 
 // /api/auth/login
-
 router.post('/login', async (req, res) => {
   try {
     const { username, password } = req.body

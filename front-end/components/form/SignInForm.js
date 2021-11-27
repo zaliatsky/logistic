@@ -1,35 +1,22 @@
+import { connect } from 'react-redux';
 import { Form, Formik } from 'formik'
-import { observer } from 'mobx-react'
 import { NotificationManager } from 'react-notifications'
+import { useRouter } from 'next/router'
 import Button from './Button'
 import FormField from './Field'
 import Loader from '../loader'
-import globalStore from '../../stores/global'
-import userStore from '../../stores/user'
-import { useRouter } from 'next/router'
+import { checkUser } from '../../redux/actions/index'
 import styles from '../../styles/modules/auth.module.scss'
 
-const SignInForm = observer(({ initialValues, validationSchema, onClick }) => {
+const SignInForm = ({ initialValues, validationSchema, onClick, dispatch }) => {
   const router = useRouter()
+  const isLoading = false
   const loginHandler = ({ username, password }) => {
-    globalStore.changeLoader(true)
-    userStore
-      .checkUser(username, password)
-      .then(({ token, userId, message }) => {
-        if (token) {
-          userStore.login(token, userId)
-          NotificationManager.success('Login success', '', 1000)
-          setTimeout(() => {
-            router.push('/game')
-          }, 2000)
-        } else {
-          NotificationManager.error(message, 'Sign in error', 8000)
-        }
-        globalStore.changeLoader(false)
-      })
+    const data = {username, password}
+
+    dispatch(checkUser(data))
   }
-  const clearHandler = () => userStore.logout()
-  const { isLoading } = globalStore
+  const clearHandler = () => {}
 
   return (
     <Formik
@@ -86,6 +73,9 @@ const SignInForm = observer(({ initialValues, validationSchema, onClick }) => {
       )}
     />
   )
-})
+}
 
-export default SignInForm
+
+const mapStateToProps = (response) => ({response});
+
+export default connect(mapStateToProps)(SignInForm);
