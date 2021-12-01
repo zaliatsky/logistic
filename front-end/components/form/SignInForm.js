@@ -1,22 +1,18 @@
 import { connect } from 'react-redux';
 import { Form, Formik } from 'formik'
-import { NotificationManager } from 'react-notifications'
-import { useRouter } from 'next/router'
 import Button from './Button'
 import FormField from './Field'
 import Loader from '../loader'
-import { checkUser } from '../../redux/actions/index'
+import { checkUser } from '../../redux/actions/login'
 import styles from '../../styles/modules/auth.module.scss'
 
-const SignInForm = ({ initialValues, validationSchema, onClick, dispatch }) => {
-  const router = useRouter()
+const SignInForm = ({ initialValues, validationSchema, onClick, dispatch, response }) => {
   const isLoading = false
   const loginHandler = ({ username, password }) => {
     const data = {username, password}
 
     dispatch(checkUser(data))
   }
-  const clearHandler = () => {}
 
   return (
     <Formik
@@ -53,18 +49,8 @@ const SignInForm = ({ initialValues, validationSchema, onClick, dispatch }) => {
                 hasArrow={false}
                 disabled={false}
               />
-
-              <Button
-                wrapperClass={`${styles.auth__formBtnWrapper} ${styles.register}`}
-                btnClass={`${styles.auth__formBtn}`}
-                text="Register"
-                type="button"
-                hasArrow
-                onClick={onClick}
-                disabled={null}
-              />
             </div>
-            <button type="reset" onClick={clearHandler}>
+            <button type="reset">
               Reset Fields
             </button>
           </div>
@@ -75,7 +61,6 @@ const SignInForm = ({ initialValues, validationSchema, onClick, dispatch }) => {
   )
 }
 
-
-const mapStateToProps = (response) => ({response});
+const mapStateToProps = response => ({...response})
 
 export default connect(mapStateToProps)(SignInForm);

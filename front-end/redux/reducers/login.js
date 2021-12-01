@@ -1,29 +1,43 @@
 import { loginActions } from '../../variables/actions'
 
 const {
-  CHECK_USER,
-  REGISTER_USER
+  CHECK_USER_SUCCEED,
+  CHECK_USER_FAILED,
+  REGISTER_USER_SUCCEED,
+  REGISTER_USER_FAILED
 } = loginActions
 
+
 const initialState = {
-  token: null,
-  accessToken: null
+  user: null
 }
 
 const loginReducer = (state = initialState, action) => {
   const {type} = action;
 
   switch (type) {
-    case CHECK_USER:
+    case REGISTER_USER_SUCCEED:
       return {
         ...state,
-        user: action.payload
+        user: action.response
       }
-    case REGISTER_USER:
+    case REGISTER_USER_FAILED:
       return {
         ...state,
-        user: action.payload
+        isLoggedIn: false,
+      };
+    case CHECK_USER_SUCCEED:
+      return {
+        ...state,
+        isLoggedIn: true,
+        user: action.response
       }
+    case CHECK_USER_FAILED:
+      return {
+        ...state,
+        isLoggedIn: false,
+        user: null,
+      };
     default:
       return state;
   }

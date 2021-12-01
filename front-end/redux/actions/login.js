@@ -6,7 +6,7 @@ const {
 } = loginActions
 
 export const checkUser = user => {
-  console.log('user requested', user)
+  console.log('here is user in action', user)
   return {
     type: CHECK_USER_REQUESTED,
     user
