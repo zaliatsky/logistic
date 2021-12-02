@@ -1,19 +1,17 @@
-import { connect } from 'react-redux';
+import { connect } from 'react-redux'
 import { Form, Formik } from 'formik'
-import {useRouter} from 'next/router';
+import { useRouter } from 'next/router'
 import Button from './Button'
 import FormField from './Field'
 import Loader from '../loader'
 import { checkUser } from '../../redux/actions/login'
 import styles from '../../styles/modules/auth.module.scss'
 
-const LoginForm = props => {
+const LoginForm = ({ initialValues, validationSchema, dispatch }) => {
   const router = useRouter()
   const isLoading = false
-  const { initialValues, validationSchema, dispatch, response } = props
-  // console.log('props', props)
   const loginHandler = ({ username, password }) => {
-    const data = {username, password}
+    const data = { username, password }
 
     dispatch(checkUser(data))
   }
@@ -28,18 +26,18 @@ const LoginForm = props => {
       {({ errors, touched }) => (
         <Form>
           <FormField
-            name='username'
-            inputType='text'
-            labelName='Username'
+            name="username"
+            inputType="text"
+            labelName="Username"
             className={
               'form-control' +
               (errors.username && touched.username ? ' is-invalid' : '')
             }
           />
           <FormField
-            name='password'
-            inputType='password'
-            labelName='Password'
+            name="password"
+            inputType="password"
+            labelName="Password"
             className={
               'form-control' +
               (errors.password && touched.password ? ' is-invalid' : '')
@@ -50,23 +48,21 @@ const LoginForm = props => {
               <Button
                 wrapperClass={`${styles.auth__formBtnWrapper} ${styles.login}`}
                 btnClass={styles.auth__formBtn}
-                text='Sign In'
-                type='submit'
+                text="Sign In"
+                type="submit"
                 disabled={false}
               />
               <Button
                 wrapperClass={`${styles.auth__formBtnWrapper} ${styles.register}`}
                 btnClass={styles.auth__formBtn}
-                text='Register'
-                type='button'
+                text="Register"
+                type="button"
                 hasArrow
                 onClick={registerHandler}
                 disabled={false}
               />
             </div>
-            <button type='reset'>
-              Reset Fields
-            </button>
+            <button type="reset">Reset Fields</button>
           </div>
           {isLoading && <Loader />}
         </Form>
@@ -75,10 +71,6 @@ const LoginForm = props => {
   )
 }
 
-const mapStateToProps = ({loginReducer}) => {
-  console.log('login form state', loginReducer)
-
-  return loginReducer
-}
+const mapStateToProps = ({ loginReducer }) => loginReducer
 
 export default connect(mapStateToProps)(LoginForm)
