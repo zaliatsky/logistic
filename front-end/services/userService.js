@@ -12,17 +12,14 @@ const loginService = requestData => {
       return response.json();
     })
     .then(({ token, message }) => {
-      if (message) NotificationManager.error(message, 'Sign in error', 8000)
       if (token && !message) {
         NotificationManager.success('Login success', '', 1000)
-        localStorage.setItem('user', JSON.stringify(token))
 
-        setTimeout(() => {
-          //Router.push('/game')
-        }, 2000)
+        return { token, message }
+      } else {
+        NotificationManager.error(message, 'Sign in error', 8000)
+        throw new Error(message)
       }
-
-      return { token, message }
     })
 }
 

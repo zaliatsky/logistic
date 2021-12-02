@@ -14,7 +14,10 @@ const initialState = {
 
 const loginReducer = (state = initialState, action) => {
   const {type} = action;
-  console.log('HERE IS REDUCER ACTION', action, state)
+  console.group()
+  console.log('HERE IS REDUCER ACTION', action)
+  console.log('HERE IS STATE', state)
+  console.groupEnd()
 
   switch (type) {
     case REGISTER_USER_SUCCEED:
@@ -26,11 +29,11 @@ const loginReducer = (state = initialState, action) => {
       return {
         ...state,
         error
-      };
+      }
     case CHECK_USER_SUCCEED:
       return {
         ...state,
-        user
+        user: action.user.token
       }
     case CHECK_USER_FAILED:
       return {
@@ -38,7 +41,7 @@ const loginReducer = (state = initialState, action) => {
         user: null,
       };
     default:
-      return state;
+      return state
   }
 };
 

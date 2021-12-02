@@ -11,7 +11,7 @@ const LoginForm = props => {
   const router = useRouter()
   const isLoading = false
   const { initialValues, validationSchema, dispatch, response } = props
-  console.log('props', props)
+  // console.log('props', props)
   const loginHandler = ({ username, password }) => {
     const data = {username, password}
 
@@ -75,6 +75,10 @@ const LoginForm = props => {
   )
 }
 
-const mapStateToProps = user => user
+const mapStateToProps = ({loginReducer}) => {
+  console.log('login form state', loginReducer)
 
-export default connect(mapStateToProps)(LoginForm);
+  return loginReducer
+}
+
+export default connect(mapStateToProps)(LoginForm)

@@ -1,5 +1,5 @@
 import {takeEvery} from 'redux-saga/effects';
-import loginSaga  from '../sagas/user'
+import fetchUser  from '../sagas/user'
 import { loginActions } from '../../variables/actions'
 
 const {
@@ -7,5 +7,5 @@ const {
 } = loginActions
 
 export default function* sagas() {
-  yield takeEvery(CHECK_USER_REQUESTED, loginSaga);
+  yield takeEvery(CHECK_USER_REQUESTED, fetchUser);
 }
