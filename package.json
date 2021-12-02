@@ -7,7 +7,8 @@
     "next": "next",
     "server": "nodemon app.js",
     "dev": "concurrently \"yarn run server\" \"yarn run next\"",
-    "stylelint": "stylelint './front-end/**/*.scss'"
+    "stylelint": "stylelint './front-end/**/*.scss'",
+    "prepare": "husky install"
   },
   "repository": {
     "type": "git",
