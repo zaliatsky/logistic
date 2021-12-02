@@ -1,10 +1,10 @@
-import Auth from './auth'
+import Login from './login'
 import { NotificationContainer } from 'react-notifications'
 
 const MainPage = () => {
   return (
     <>
-      <Auth />
+      <Login />
       <NotificationContainer />
     </>
   )

@@ -12,7 +12,7 @@ const {
 function* loginSaga(payload) {
   try {
     const user = yield call(loginService, payload)
-
+    console.log('SAGA USER REQUESTED', user, payload)
     yield put({type: CHECK_USER_SUCCEED, user })
   } catch (e) {
     yield put({type: CHECK_USER_FAILED, message: e.message})

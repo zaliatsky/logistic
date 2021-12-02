@@ -1,8 +1,8 @@
 @import 'front-end/styles/helpers/variables';
 @import 'front-end/styles/helpers/mixins';
 
-$signin-left: #21d4fd;
-$signin-right: #b721ff;
+$login-left: #21d4fd;
+$login-right: #b721ff;
 $signup-left: #74ebd5;
 $signup-right: #9face6;
 
@@ -57,9 +57,9 @@ $signup-right: #9face6;
         margin-right: 10px;
         cursor: pointer;
 
-        &.signin {
+        &.login {
           .auth__formBtnBg {
-            background: linear-gradient(to left, $signin-left, $signin-right, $signin-left, $signin-right);
+            background: linear-gradient(to left, $login-left, $login-right, $login-left, $login-right);
           }
         }
 

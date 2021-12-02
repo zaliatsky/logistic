@@ -1,10 +1,9 @@
-import { useState } from 'react'
-import styles from '../../front-end/styles/modules/auth.module.scss'
-import SignInForm from '../../front-end/components/form/SignInForm'
 import {
-  initialValuesSignin,
-  validationSchemaSignin,
+  initialValuesLogin,
+  validationSchemaLogin,
 } from '../../front-end/variables/form'
+import LoginForm from '../../front-end/components/form/LoginForm'
+import styles from '../../front-end/styles/modules/auth.module.scss'
 
 const Login = () => {
   return (
@@ -12,11 +11,11 @@ const Login = () => {
       <div className={styles.auth__holder} />
       <div className={styles.auth__form}>
         <h1 className={styles.auth__formHeader}>
-          Sign In
+          Login
         </h1>
-        <SignInForm
-          initialValues={initialValuesSignin}
-          validationSchema={validationSchemaSignin}
+        <LoginForm
+          initialValues={initialValuesLogin}
+          validationSchema={validationSchemaLogin}
         />
       </div>
     </section>

@@ -1,6 +1,6 @@
 import * as Yup from 'yup'
 
-const initialValuesSignin = {
+const initialValuesLogin = {
   username: '',
   password: '',
 }
@@ -11,7 +11,7 @@ const initialValuesRegister = {
   confirmPassword: '',
 }
 
-const validationSchemaSignin = Yup.object().shape({
+const validationSchemaLogin = Yup.object().shape({
   username: Yup.string()
     .min(3, 'Username must be at least 3 characters')
     .required('Username is required'),
@@ -33,8 +33,8 @@ const validationSchemaRegister = Yup.object().shape({
 })
 
 export {
-  initialValuesSignin,
+  initialValuesLogin,
   initialValuesRegister,
-  validationSchemaSignin,
+  validationSchemaLogin,
   validationSchemaRegister,
 }

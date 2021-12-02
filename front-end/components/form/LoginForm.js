@@ -1,39 +1,45 @@
 import { connect } from 'react-redux';
 import { Form, Formik } from 'formik'
+import {useRouter} from 'next/router';
 import Button from './Button'
 import FormField from './Field'
 import Loader from '../loader'
 import { checkUser } from '../../redux/actions/login'
 import styles from '../../styles/modules/auth.module.scss'
 
-const SignInForm = ({ initialValues, validationSchema, onClick, dispatch, response }) => {
+const LoginForm = props => {
+  const router = useRouter()
   const isLoading = false
+  const { initialValues, validationSchema, dispatch, response } = props
+  console.log('props', props)
   const loginHandler = ({ username, password }) => {
     const data = {username, password}
 
     dispatch(checkUser(data))
   }
+  const registerHandler = () => router.push('/register')
 
   return (
     <Formik
       initialValues={initialValues}
       validationSchema={validationSchema}
       onSubmit={(fields) => loginHandler(fields)}
-      render={({ errors, touched }) => (
+    >
+      {({ errors, touched }) => (
         <Form>
           <FormField
-            name="username"
-            inputType="text"
-            labelName="Username"
+            name='username'
+            inputType='text'
+            labelName='Username'
             className={
               'form-control' +
               (errors.username && touched.username ? ' is-invalid' : '')
             }
           />
           <FormField
-            name="password"
-            inputType="password"
-            labelName="Password"
+            name='password'
+            inputType='password'
+            labelName='Password'
             className={
               'form-control' +
               (errors.password && touched.password ? ' is-invalid' : '')
@@ -42,25 +48,33 @@ const SignInForm = ({ initialValues, validationSchema, onClick, dispatch, respon
           <div className={styles.auth__formBtnsWrapper}>
             <div className={styles.auth__formBtns}>
               <Button
-                wrapperClass={`${styles.auth__formBtnWrapper} ${styles.signin}`}
+                wrapperClass={`${styles.auth__formBtnWrapper} ${styles.login}`}
                 btnClass={styles.auth__formBtn}
-                text="Sign In"
-                type="submit"
-                hasArrow={false}
+                text='Sign In'
+                type='submit'
+                disabled={false}
+              />
+              <Button
+                wrapperClass={`${styles.auth__formBtnWrapper} ${styles.register}`}
+                btnClass={styles.auth__formBtn}
+                text='Register'
+                type='button'
+                hasArrow
+                onClick={registerHandler}
                 disabled={false}
               />
             </div>
-            <button type="reset">
+            <button type='reset'>
               Reset Fields
             </button>
           </div>
           {isLoading && <Loader />}
         </Form>
       )}
-    />
+    </Formik>
   )
 }
 
-const mapStateToProps = response => ({...response})
+const mapStateToProps = user => user
 
-export default connect(mapStateToProps)(SignInForm);
+export default connect(mapStateToProps)(LoginForm);

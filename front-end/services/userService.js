@@ -18,9 +18,11 @@ const loginService = requestData => {
         localStorage.setItem('user', JSON.stringify(token))
 
         setTimeout(() => {
-          Router.push('/game')
+          //Router.push('/game')
         }, 2000)
       }
+
+      return { token, message }
     })
 }
 

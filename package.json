@@ -18,6 +18,9 @@
   "author": "illia zaliatskyi",
   "license": "ISC",
   "dependencies": {
+    "@fortawesome/fontawesome-svg-core": "^1.2.35",
+    "@fortawesome/free-solid-svg-icons": "^5.15.3",
+    "@fortawesome/react-fontawesome": "^0.1.15",
     "axios": "^0.21.1",
     "bcrypt": "^5.0.1",
     "bcryptjs": "^2.4.3",
@@ -33,14 +36,12 @@
     "react-bootstrap": "^2.0.0-beta.4",
     "react-dom": "^17.0.2",
     "react-redux": "^7.2.6",
+    "react-notifications": "^1.7.2",
     "redux": "^4.1.2",
     "redux-saga": "^1.1.3",
     "yup": "^0.32.9"
   },
   "devDependencies": {
-    "@fortawesome/fontawesome-svg-core": "^1.2.35",
-    "@fortawesome/free-solid-svg-icons": "^5.15.3",
-    "@fortawesome/react-fontawesome": "^0.1.15",
     "@types/react": "^17.0.3",
     "@typescript-eslint/eslint-plugin": "^4.29.0",
     "@typescript-eslint/parser": "^4.29.0",
@@ -56,7 +57,6 @@
     "lint-staged": "^11.1.1",
     "nodemon": "^2.0.12",
     "prettier": "^2.3.2",
-    "react-notifications": "^1.7.2",
     "sass": "^1.36.0",
     "stylelint": "^13.13.1",
     "stylelint-config-standard": "^22.0.0",

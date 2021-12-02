@@ -14,6 +14,7 @@ const initialState = {
 
 const loginReducer = (state = initialState, action) => {
   const {type} = action;
+  console.log('HERE IS REDUCER ACTION', action, state)
 
   switch (type) {
     case REGISTER_USER_SUCCEED:
@@ -24,18 +25,16 @@ const loginReducer = (state = initialState, action) => {
     case REGISTER_USER_FAILED:
       return {
         ...state,
-        isLoggedIn: false,
+        error
       };
     case CHECK_USER_SUCCEED:
       return {
         ...state,
-        isLoggedIn: true,
-        user: action.response
+        user
       }
     case CHECK_USER_FAILED:
       return {
         ...state,
-        isLoggedIn: false,
         user: null,
       };
     default:
