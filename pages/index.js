@@ -1,13 +1,12 @@
 import Login from './login'
-import { NotificationContainer } from 'react-notifications'
+import Game from './game'
+import { useAuth } from '../front-end/helpers/auth'
 
 const MainPage = () => {
-  return (
-    <>
-      <Login />
-      <NotificationContainer />
-    </>
-  )
+  const { token } = useAuth()
+  console.info('TOKEN', token)
+
+  return token ? <Game /> : <Login />
 }
 
 export default MainPage

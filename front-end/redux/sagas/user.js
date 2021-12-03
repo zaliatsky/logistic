@@ -12,7 +12,7 @@ const {
 function* fetchUser(action) {
   try {
     const user = yield call(loginService, action)
-    console.log('SAGA USER REQUESTED', user, action)
+
     yield put({ type: CHECK_USER_SUCCEED, user })
   } catch (e) {
     yield put({ type: CHECK_USER_FAILED, message: e.message })
